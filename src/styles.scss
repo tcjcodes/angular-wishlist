@@ -1,4 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background-color: gainsboro;
+@import "../node_modules/bulma/bulma";
+@import "../node_modules/font-awesome/css/font-awesome.css";
+
+
+.wl- {
+  &app {
+    height: 100vh;
+  }
+
+  &sidebar {
+    background-color: $purple;
+    color: $white;
+  }
+
+  $menu-color: $white;
+  &menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //align-items: center;
+  }
+  &menu-brand {
+    flex-grow: 1;
+    padding: 10px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .title {
+      color: $menu-color;
+    }
+  }
+  &menu-list {
+    border-top: 1px solid white;
+  }
+  &menu-item {
+    flex-grow: 1;
+    display: block;
+    padding: 1em;
+
+    a {
+      color: $menu-color;
+    }
+  }
+
+  &content {
+    //background-color: $grey-light;
+  }
 }
