@@ -7,10 +7,10 @@
             </div>
             <ul class="wl-menu-list">
                 <li class="wl-menu-item">
-                    <a target="_blank" href="#"><span class="fa fa-plus"></span> Add New Item</a>
+                    <a routerLink="/item/new"><span class="fa fa-plus"></span> Add New Item</a>
                 </li>
                 <li class="wl-menu-item">
-                    <a target="_blank" href="#"><span class="fa fa-list"></span> View Wishlist</a>
+                    <a routerLink="/list"><span class="fa fa-list"></span> View Wishlist</a>
                 </li>
             </ul>
         </div>
@@ -23,8 +23,10 @@
         <section class="section">
             <div class="container">
                 <h1 class="title">
-                    View Wishlist
+                    Hello World
                 </h1>
+
+                <router-outlet></router-outlet>
             </div>
         </section>
     </div>
