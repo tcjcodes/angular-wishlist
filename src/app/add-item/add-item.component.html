@@ -1,3 +1,54 @@
-<p>
-  add-item works!
-</p>
+<section class="section">
+    <h1 class="title">Add New Item</h1>
+
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+            <input class="input" type="text" placeholder="Amazon Echo"
+                   [(ngModel)]="item.name" required>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Price</label>
+        <div class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="100.00" [(ngModel)]="item.price">
+            <span class="icon is-small is-left">
+      <i class="fa fa-usd"></i>
+    </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+            <textarea class="textarea" [(ngModel)]="item.description"
+                      placeholder="A hands-free speaker you control with your voice"></textarea>
+        </div>
+        <p class="help">{{item.description ? item.description.length : 0}} of {{maxDescriptionLength}} characters</p>
+    </div>
+
+    <div class="field">
+        <label class="label">Link</label>
+        <div class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="www.amazon.com" [(ngModel)]="item.hyperlink">
+            <span class="icon is-small is-left">
+                <i class="fa fa-globe"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label class="checkbox">
+                <input type="checkbox" [(ngModel)]="item.favorite"> Mark as a favorite
+            </label>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+</section>
