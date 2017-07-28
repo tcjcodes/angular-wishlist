@@ -6,9 +6,22 @@ export interface WishlistItem {
     description?: string;
     hyperlink?: string;
     favorite: boolean;
+    quantity: number;
 }
 
-const mockItems = [];
+const mockItems: WishlistItem[] = [{
+    name: 'Cupcakes!',
+    description: 'Lorem ipsum dolores',
+    favorite: false,
+    quantity: 12
+}, {
+    name: 'Tartelette in Bloom',
+    price: '46.00',
+    description: 'Lorem ipsum dolores',
+    hyperlink: 'http://www.ulta.com/',
+    favorite: true,
+    quantity: 1
+}];
 
 @Injectable()
 export class ItemService {
@@ -16,11 +29,12 @@ export class ItemService {
     constructor() {
     }
 
-    getItems(): WishlistItem[] {
-        return mockItems;
+    getItems(): Promise<WishlistItem[]> {
+        return Promise.resolve(mockItems);
     }
 
-    submitItem(item: WishlistItem) {
-        console.log('Submitted', item);
+    submitItem(item: WishlistItem): Promise<number> {
+        mockItems.push(item);
+        return Promise.resolve(mockItems.length - 1)
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService, WishlistItem } from '../item.service';
 
 @Component({
   selector: 'app-view-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewListComponent implements OnInit {
 
-  constructor() { }
+  items: WishlistItem[];
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.itemService.getItems()
+        .then((items) => this.items = items);
   }
 
 }

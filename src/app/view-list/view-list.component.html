@@ -1,1 +1,44 @@
-<h1 class="title">View Wishlist</h1>
+<section class="section">
+    <div class="container">
+        <h1 class="title">View Wishlist</h1>
+
+        <div class="columns is-multiline">
+            <div class="column is-4" *ngFor="let item of items">
+                <div class="card">
+                    <!-- TODO support images
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                        </figure>
+                    </div>-->
+                    <div class="card-content content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">
+                                    <a *ngIf="item.hyperlink"
+                                       [href]="item.hyperlink" target="_blank">{{item.name}}</a>
+                                    <span *ngIf="!item.hyperlink">{{item.name}}</span>
+                                </p>
+                                <p class="subtitle is-6">
+                                    <span *ngIf="item.price">Price: ${{item.price}}, </span>
+                                    Quantity: {{item.quantity}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            {{item.description}}
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a class="card-footer-item" [title]="item.favorite ? 'Unfavorite Item' : 'Favorite Item'">
+                            <span class="fa" [ngClass]="{'fa-heart': item.favorite, 'fa-heart-o': !item.favorite}"></span>
+                        </a>
+                        <a class="card-footer-item" title="Edit"><span class="fa fa-pencil"></span></a>
+                        <a class="card-footer-item" title="Delete"><span class="fa fa-trash"></span></a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

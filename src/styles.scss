@@ -1,7 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+
+$red: #A2101D;
+
 @import "../node_modules/bulma/bulma";
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
+
+// Forms
+.ng-dirty {
+  //&.ng-valid[required], &.ng-valid.required {
+  //  @extend .is-success;
+  //}
+  &.ng-invalid:not(form) {
+    @extend .is-danger;
+  }
+}
+
+// https://github.com/twbs/bootstrap/issues/15274
+[hidden] {
+  display: none;
+}
 
 .wl- {
   &app {
@@ -47,6 +66,6 @@
   }
 
   &content {
-    //background-color: $grey-light;
+
   }
 }

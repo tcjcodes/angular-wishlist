@@ -1,54 +1,89 @@
-<section class="section">
+<section class="section wl-add-item-form">
     <h1 class="title">Add New Item</h1>
 
-    <div class="field">
-        <label class="label">Name</label>
-        <div class="control">
-            <input class="input" type="text" placeholder="Amazon Echo"
-                   [(ngModel)]="item.name" required>
+    <form (ngSubmit)="onSubmit()" #addItemForm="ngForm">
+        <div class="field">
+            <label class="label" for="name">Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Amazon Echo" id="name" name="name"
+                       #name="ngModel"
+                       [(ngModel)]="item.name"
+                       required maxlength="200">
+            </div>
+            <p [hidden]="name.valid || name.pristine" class="help is-danger">This is required</p>
         </div>
-    </div>
 
-    <div class="field">
-        <label class="label">Price</label>
-        <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" placeholder="100.00" [(ngModel)]="item.price">
-            <span class="icon is-small is-left">
-      <i class="fa fa-usd"></i>
-    </span>
+        <div class="field is-grouped">
+            <div class="control">
+                <label class="label" for="price">Price</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="text" placeholder="100.00" id="price" name="price"
+                           #price="ngModel"
+                           pattern="[0-9]+(\.[0-9]{2})?"
+                           [(ngModel)]="item.price">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-usd"></i>
+                    </span>
+                </div>
+                <p [hidden]="price.valid || price.pristine" class="help is-danger">Please enter a valid US Dollar
+                    amount</p>
+            </div>
+
+            <div class="control">
+                <label class="label" for="qty">Quantity</label>
+                <div class="control">
+                    <input class="input" type="number" id="qty" name="qty"
+                           #quantity="ngModel"
+                           [(ngModel)]="item.quantity"
+                           required>
+                    <p [hidden]="quantity.valid || quantity.pristine" class="help is-danger">This is required</p>
+                </div>
+            </div>
+
+            <div class="control is-expanded">
+                <div class="field">
+                    <label class="label" for="hyperlink">Link</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" placeholder="www.amazon.com" id="hyperlink" name="hyperlink"
+                               [(ngModel)]="item.hyperlink">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-globe"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-            <textarea class="textarea" [(ngModel)]="item.description"
+        <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="control">
+            <textarea class="textarea"
+                      #description="ngModel"
+                      [(ngModel)]="item.description" maxlength="200"
+                      id="description" name="description"
                       placeholder="A hands-free speaker you control with your voice"></textarea>
+            </div>
+            <p class="help">{{item.description ? item.description.length : 0}} of {{maxDescriptionLength}} characters
+            </p>
         </div>
-        <p class="help">{{item.description ? item.description.length : 0}} of {{maxDescriptionLength}} characters</p>
-    </div>
 
-    <div class="field">
-        <label class="label">Link</label>
-        <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" placeholder="www.amazon.com" [(ngModel)]="item.hyperlink">
-            <span class="icon is-small is-left">
-                <i class="fa fa-globe"></i>
-            </span>
+        <div class="field">
+            <div class="control">
+                <label class="checkbox" for="favorite">
+                    <input type="checkbox" [(ngModel)]="item.favorite" id="favorite" name="favorite"> Mark as a favorite
+                </label>
+            </div>
         </div>
-    </div>
 
-    <div class="field">
-        <div class="control">
-            <label class="checkbox">
-                <input type="checkbox" [(ngModel)]="item.favorite"> Mark as a favorite
-            </label>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary"
+                        [ngClass]="{ 'disabled' : !addItemForm.form.valid }"
+                        [disabled]="!addItemForm.form.valid">Submit
+                </button>
+            </div>
         </div>
-    </div>
+    </form>
 
-    <div class="field">
-        <div class="control">
-            <button class="button is-primary" (click)="onSubmit()">Submit</button>
-        </div>
-    </div>
+    <p *ngIf="submitted">{{submitMessage}}</p>
 </section>
